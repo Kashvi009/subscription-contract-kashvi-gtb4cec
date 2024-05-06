@@ -23,8 +23,7 @@ pub trait SubscriptionContract {
     );
 
     #[contractfn]
-    fn is_subscription_active(env: Env, user: Bytes, service_id: Symbol) -> bool;
-    
+    fn is_subscription_active(env: Env, user: Bytes, service_id: Symbol) -> bool;  
 }
 
 contractimpl! {
