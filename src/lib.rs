@@ -1,6 +1,5 @@
 use soroban_sdk::{contractimpl, contracttype, Bytes, Env, IntoVal, Symbol, Vec};
 
-// Structure to store a single subscription
 #[contracttype]
 pub struct Subscription {
     user: Bytes,
@@ -9,7 +8,6 @@ pub struct Subscription {
     end_time: u64,
 }
 
-// The contract type
 #[contracttype]
 pub enum DataKey {
     Subscription(Bytes), // Store subscriptions by user address
@@ -26,13 +24,8 @@ pub trait SubscriptionContract {
 
     #[contractfn]
     fn is_subscription_active(env: Env, user: Bytes, service_id: Symbol) -> bool;
-
-    // ... Add more functions like:
-    //  - renew_subscription(env: Env, ...)
-    //  - cancel_subscription(env: Env, ...)
 }
 
-// Implementation of the Contract trait
 contractimpl! {
     fn create_subscription(env: Env, user: Bytes, service_id: Symbol, duration: u64) {
         let start_time = env.ledger().timestamp();
